@@ -42,10 +42,5 @@
         "bringyourownideas/silverstripe-composer-update-checker": "1.0.x-dev",
         "bringyourownideas/silverstripe-composer-security-checker": "1.0.x-dev"
     },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.9.x-dev"
-    }
-  },
   "minimum-stability": "dev"
 }
