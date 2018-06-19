@@ -12,7 +12,7 @@
         "silverstripe/framework": "~3.7.0",
         "silverstripe/siteconfig": "~3.7.0",
         "silverstripe/reports": "~3.7.0",
-        "symbiote/silverstripe-advancedworkflow": "4.0.x-dev",
+        "symbiote/silverstripe-advancedworkflow": "4.1.x-dev",
         "silverstripe/contentreview": "3.0.x-dev",
         "silverstripe/documentconverter": "1.0.x-dev",
         "silverstripe/externallinks": "1.0.x-dev",
@@ -31,13 +31,16 @@
         "silverstripe/sharedraftcontent": "1.3.x-dev",
         "silverstripe/sitewidecontent-report": "2.0.x-dev",
         "undefinedoffset/sortablegridfield": "~0.6.9",
-        "silverstripe/spellcheck": "1.0.x-dev",
+        "silverstripe/spellcheck": "1.1.x-dev",
         "silverstripe/subsites": "1.3.x-dev",
-        "silverstripe/taxonomy": "1.2.x-dev",
-        "silverstripe/translatable": "2.2.x-dev",
+        "silverstripe/taxonomy": "1.3.x-dev",
+        "silverstripe/translatable": "2.3.x-dev",
         "silverstripe/userforms": "4.5.x-dev",
         "symbiote/silverstripe-versionedfiles": "2.0.x-dev",
-        "silverstripe/versionfeed": "1.2.x-dev"
+        "silverstripe/versionfeed": "1.2.x-dev",
+        "bringyourownideas/silverstripe-maintenance": "1.0.x-dev",
+        "bringyourownideas/silverstripe-composer-update-checker": "1.0.x-dev",
+        "bringyourownideas/silverstripe-composer-security-checker": "1.0.x-dev"
     },
   "minimum-stability": "dev"
 }

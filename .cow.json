@@ -13,6 +13,7 @@
   "vendors": [
     "cwp",
     "silverstripe",
-    "symbiote"
+    "symbiote",
+    "bringyourownideas"
   ]
 }
