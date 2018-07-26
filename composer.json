@@ -24,7 +24,7 @@
         "silverstripe/html5": "1.0.x-dev",
         "silverstripe/iframe": "1.0.x-dev",
         "silverstripe/mimevalidator": "1.0.x-dev",
-        "symbiote/silverstripe-multivaluefield": "3.0.x-dev",
+        "symbiote/silverstripe-multivaluefield": "3.1.x-dev",
         "symbiote/silverstripe-queuedjobs": "3.0.x-dev",
         "silverstripe/registry": "1.0.x-dev",
         "silverstripe/restfulserver": "1.0.x-dev",
