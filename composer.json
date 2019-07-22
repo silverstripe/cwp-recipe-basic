@@ -18,14 +18,14 @@
         "symbiote/silverstripe-advancedworkflow": "4.1.x-dev",
         "silverstripe/contentreview": "3.0.x-dev",
         "silverstripe/documentconverter": "1.0.x-dev",
-        "silverstripe/externallinks": "1.0.x-dev",
+        "silverstripe/externallinks": "1.1.x-dev",
         "silverstripe/fulltextsearch": "2.4.x-dev",
         "symbiote/silverstripe-gridfieldextensions": "^2.0",
         "silverstripe/html5": "1.0.x-dev",
         "silverstripe/iframe": "1.0.x-dev",
         "silverstripe/mimevalidator": "1.0.x-dev",
         "symbiote/silverstripe-multivaluefield": "3.1.x-dev",
-        "symbiote/silverstripe-queuedjobs": "3.0.x-dev",
+        "symbiote/silverstripe-queuedjobs": "3.1.x-dev",
         "silverstripe/registry": "1.0.x-dev",
         "silverstripe/restfulserver": "1.0.x-dev",
         "silverstripe/secureassets": "1.2.x-dev",
@@ -45,5 +45,6 @@
         "bringyourownideas/silverstripe-composer-update-checker": "1.0.x-dev",
         "bringyourownideas/silverstripe-composer-security-checker": "1.0.x-dev"
     },
+    "extra": [],
     "minimum-stability": "dev"
 }
