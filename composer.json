@@ -8,9 +8,9 @@
         "cwp"
     ],
     "require": {
-        "php": ">=5.6",
-        "cwp/cwp": "1.9.x-dev",
-        "cwp/cwp-core": "1.9.x-dev",
+        "php": ">=7.1",
+        "cwp/cwp": "1.10.x-dev",
+        "cwp/cwp-core": "1.10.x-dev",
         "silverstripe/cms": "~3.7.0",
         "silverstripe/framework": "~3.7.0",
         "silverstripe/siteconfig": "~3.7.0",
