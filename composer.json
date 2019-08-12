@@ -41,9 +41,9 @@
         "silverstripe/userforms": "4.5.x-dev",
         "symbiote/silverstripe-versionedfiles": "2.0.x-dev",
         "silverstripe/versionfeed": "1.2.x-dev",
-        "bringyourownideas/silverstripe-maintenance": "1.0.x-dev",
-        "bringyourownideas/silverstripe-composer-update-checker": "1.0.x-dev",
-        "bringyourownideas/silverstripe-composer-security-checker": "1.0.x-dev"
+        "bringyourownideas/silverstripe-maintenance": "1.1.x-dev",
+        "bringyourownideas/silverstripe-composer-update-checker": "1.1.x-dev",
+        "bringyourownideas/silverstripe-composer-security-checker": "1.1.x-dev"
     },
     "extra": [],
     "minimum-stability": "dev"
