@@ -35,7 +35,7 @@
         "silverstripe/sitewidecontent-report": "2.0.x-dev",
         "undefinedoffset/sortablegridfield": "~1.0.3",
         "silverstripe/spellcheck": "1.1.x-dev",
-        "silverstripe/subsites": "1.5.x-dev",
+        "silverstripe/subsites": "1.4.x-dev",
         "silverstripe/taxonomy": "1.3.x-dev",
         "silverstripe/translatable": "2.3.x-dev",
         "silverstripe/userforms": "4.6.x-dev",
