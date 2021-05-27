@@ -2,8 +2,8 @@ language: php
 
 os: linux
 
-# Using xenial which will use MySQL 5.7 by default
-dist: xenial
+# Using trusty which will use MySQL 5.6 by default
+dist: trusty
 
 # Always install services for postgres + behat because "services"
 # does not "merge" correctly so this cannot be dynamic
