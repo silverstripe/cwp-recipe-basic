@@ -1,0 +1,95 @@
+language: php
+
+os: linux
+
+# Using xenial which will use MySQL 5.7 by default
+dist: xenial
+
+# Always install services for postgres + behat because "services"
+# does not "merge" correctly so this cannot be dynamic
+services:
+  - mysql
+
+jobs:
+  fast_finish: false
+  include:
+    - php: 7.3
+      env:
+        - DB=MYSQL
+        - PHPUNIT_TEST=1
+        - PHPUNIT_SUITE="core"
+    - php: 7.3
+      env:
+        - DB=MYSQL
+        - PHPUNIT_TEST=1
+        - PHPUNIT_SUITE="admin"
+    - php: 7.3
+      env:
+        - DB=MYSQL
+        - PHPUNIT_TEST=1
+        - PHPUNIT_SUITE="cwp"
+    - php: 7.3
+      env:
+        - DB=MYSQL
+        - PHPUNIT_TEST=1
+        - PHPUNIT_SUITE="modulesa"
+    - php: 7.3
+      env:
+        - DB=MYSQL
+        - PHPUNIT_TEST=1
+        - PHPUNIT_SUITE="modulesb"
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+before_script:
+  # Dynamically work out COMPOSER_ROOT_VERSION:
+  # Numeric branch - 4 / 4.8 => 4.x-dev / 4.8.x-dev
+  # Tag - 1.2.3 / 1.2.3-beta1 => 1.2.3 / 1.2.3-beta1
+  # Non-numeric branch - master / some-branch => dev-master / dev-some-branch
+  # $TRAVIS_BRANCH documentation - https://docs.travis-ci.com/user/environment-variables/#default-environment-variables
+  - if [[ "$TRAVIS_BRANCH" =~ ^[1-9]$ ]] || [[ "$TRAVIS_BRANCH" =~ ^[1-9]\.[0-9]+$ ]]; then export COMPOSER_ROOT_VERSION="${TRAVIS_BRANCH}.x-dev"; elif [[ "$TRAVIS_BRANCH" =~ ^[1-9]\.[0-9]+\.[0-9]+ ]]; then export COMPOSER_ROOT_VERSION="${TRAVIS_BRANCH}"; else export COMPOSER_ROOT_VERSION="dev-${TRAVIS_BRANCH}"; fi
+
+  # PHPENV
+  - phpenv rehash
+  - phpenv config-rm xdebug.ini || true
+  - if [[ $PHPUNIT_COVERAGE_TEST ]]; then memlimit='8192M'; else memlimit='4096M'; fi
+  - echo "memory_limit = ${memlimit}" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - echo 'always_populate_raw_post_data = -1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+
+  # COMPOSER
+  - if [ $COMPOSER_VERSION ]; then composer self-update "$COMPOSER_VERSION"; elif [ $(php -r 'echo (int) version_compare(phpversion(), "7.3.0", "<=");') = "1" ]; then composer self-update 1.9.3; else composer self-update; fi
+  - composer --version
+  # Require sminne phpunit in .travis.yml rather than require-dev in composer.json because they're not compatible with behat-extension:^1 which uses phpunit 3
+  - composer require --no-update sminnee/phpunit:^5.7 sminnee/phpunit-mock-objects:^3.4.5
+  - if [[ $(composer validate 2>&1 | tr '\n' ' ') =~ ' is valid' ]]; then cat composer.json; fi
+  - composer update --prefer-source --no-interaction --no-progress --no-suggest --optimize-autoloader --verbose --profile $COMPOSER_INSTALL_ARG
+  - composer show
+
+  # silverstripe-installer - includes files required for minimal site setup e.g. Page, PageController
+  - composer create-project silverstripe/installer:^3 ~/myinstaller
+  - cp -R ~/myinstaller/assets .
+  - cp -R ~/myinstaller/mysite .
+  - cp -R ~/myinstaller/themes .
+  - cp ~/myinstaller/.htaccess .
+  - cp ~/myinstaller/index.php .
+
+  # add _ss_environment.php file
+  - PWD=$(pwd)
+  - echo "<?php" > _ss_environment.php
+  - echo "define('SS_ENVIRONMENT_TYPE', 'dev');" >> _ss_environment.php
+  - echo "define('SS_TRUSTED_PROXY_IPS', '*');" >> _ss_environment.php
+  - echo "define('SS_DATABASE_SERVER', '127.0.0.1');" >> _ss_environment.php
+  - echo "define('SS_DATABASE_USERNAME', 'root');" >> _ss_environment.php
+  - echo "define('SS_DATABASE_PASSWORD', '');" >> _ss_environment.php
+  - echo "define('SS_DATABASE_CHOOSE_NAME', 1);" >> _ss_environment.php
+  - echo "define('SS_DEFAULT_ADMIN_USERNAME', 'admin');" >> _ss_environment.php
+  - echo "define('SS_DEFAULT_ADMIN_PASSWORD', 'password');" >> _ss_environment.php
+  - echo "define('SS_HOST', 'localhost');" >> _ss_environment.php
+  - echo "global \$_FILE_TO_URL_MAPPING;" >> _ss_environment.php
+  - echo "\$_FILE_TO_URL_MAPPING['$PWD'] = 'http://localhost:8000';" >> _ss_environment.php
+
+script:
+  # PHPUNIT
+  - if [[ $PHPUNIT_TEST ]]; then vendor/bin/phpunit --testsuite $PHPUNIT_SUITE; fi

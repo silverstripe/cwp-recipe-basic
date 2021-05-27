@@ -1,0 +1,69 @@
+<phpunit
+	bootstrap="framework/tests/bootstrap.php"
+	colors="true"
+	stopOnError="false"
+	stopOnFailure="false"
+	stopOnIncomplete="false"
+>
+
+	<testsuite name="core">
+		<directory>framework/tests</directory>
+	</testsuite>
+
+	<testsuite name="admin">
+		<directory>cms/tests</directory>
+		<directory>framework/admin/tests</directory>
+	</testsuite>
+
+	<testsuite name="cwp">
+		<directory>cwp/tests</directory>
+		<directory>cwp-core/tests</directory>
+	</testsuite>
+
+	<testsuite name="modulesa">
+		<directory>advancedworkflow/tests</directory>
+		<directory>auditor/tests</directory>
+		<directory>contentreview/tests</directory>
+		<!-- Uncaught Error: Class 'Phockito' not found causing build to end
+		<directory>environmentcheck/tests</directory>
+		-->
+		<directory>externallinks/tests</directory>
+		<directory>fulltextsearch/tests</directory>
+		<directory>gridfieldextensions/tests</directory>
+		<directory>html5/tests</directory>
+		<directory>hybridsessions/tests</directory>
+		<directory>iframe/tests</directory>
+		<directory>mimevalidator/tests</directory>
+		<directory>multivaluefield/tests</directory>
+		<directory>queuedjobs/tests</directory>
+		<directory>registry/tests</directory>
+		<directory>reports/tests</directory>
+		<directory>restfulserver/tests</directory>
+		<directory>secureassets/tests</directory>
+	</testsuite>
+
+	<testsuite name="modulesb">
+		<directory>securityreport/tests</directory>
+		<directory>segment-field/tests</directory>
+		<directory>selectupload/tests</directory>
+		<directory>sharedraftcontent/tests</directory>
+		<directory>silverstripe-composer-security-checker/tests</directory>
+		<directory>silverstripe-composer-update-checker/tests</directory>
+		<directory>silverstripe-maintenance/tests</directory>
+		<directory>siteconfig/tests</directory>
+		<directory>sitewidecontent-report/tests</directory>
+		<directory>sortablegridfield/tests</directory>
+		<directory>spellcheck/tests</directory>
+		<directory>subsites/tests</directory>
+		<directory>taxonomy/tests</directory>
+		<directory>translatable/tests</directory>
+		<directory>userforms/tests</directory>
+		<directory>versionedfiles/tests</directory>
+		<directory>versionedfeed/tests</directory>
+	</testsuite>
+
+	<listeners>
+		<listener class="SS_TestListener" file="framework/dev/TestListener.php" />
+	</listeners>
+	
+</phpunit>
