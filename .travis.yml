@@ -13,27 +13,27 @@ services:
 jobs:
   fast_finish: false
   include:
-    - php: 7.3
+    - php: 7.4
       env:
         - DB=MYSQL
         - PHPUNIT_TEST=1
         - PHPUNIT_SUITE="core"
-    - php: 7.3
+    - php: 7.4
       env:
         - DB=MYSQL
         - PHPUNIT_TEST=1
         - PHPUNIT_SUITE="admin"
-    - php: 7.3
+    - php: 7.4
       env:
         - DB=MYSQL
         - PHPUNIT_TEST=1
         - PHPUNIT_SUITE="cwp"
-    - php: 7.3
+    - php: 7.4
       env:
         - DB=MYSQL
         - PHPUNIT_TEST=1
         - PHPUNIT_SUITE="modulesa"
-    - php: 7.3
+    - php: 7.4
       env:
         - DB=MYSQL
         - PHPUNIT_TEST=1
@@ -74,6 +74,9 @@ before_script:
   - cp -R ~/myinstaller/themes .
   - cp ~/myinstaller/.htaccess .
   - cp ~/myinstaller/index.php .
+
+  # turn off php 7.4 deprecation warnings
+  - echo "error_reporting(E_ALL ^ E_DEPRECATED);" >> mysite/_config.php
 
   # add _ss_environment.php file
   - PWD=$(pwd)
