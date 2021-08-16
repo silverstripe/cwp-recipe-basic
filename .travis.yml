@@ -2,8 +2,7 @@ language: php
 
 os: linux
 
-# Using xenial which will use MySQL 5.7 by default
-dist: xenial
+dist: bionic
 
 # Always install services for postgres + behat because "services"
 # does not "merge" correctly so this cannot be dynamic
@@ -57,9 +56,6 @@ before_script:
   - echo "memory_limit = 4096M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo 'always_populate_raw_post_data = -1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
-  # turn off php 7.4 deprecation warnings
-  - echo 'error_reporting = E_ALL & ~E_DEPRECATED' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-
   # COMPOSER
   - if [ $COMPOSER_VERSION ]; then composer self-update "$COMPOSER_VERSION"; elif [ $(php -r 'echo (int) version_compare(phpversion(), "7.3.0", "<=");') = "1" ]; then composer self-update 1.9.3; else composer self-update; fi
   - composer --version
@@ -91,6 +87,8 @@ before_script:
   - echo "define('SS_HOST', 'localhost');" >> _ss_environment.php
   - echo "global \$_FILE_TO_URL_MAPPING;" >> _ss_environment.php
   - echo "\$_FILE_TO_URL_MAPPING['$PWD'] = 'http://localhost:8000';" >> _ss_environment.php
+  # turn off php 7.4 deprecation warnings
+  - echo "error_reporting(E_ALL & ~E_DEPRECATED);" >> _ss_environment.php
 
 script:
   # PHPUNIT
