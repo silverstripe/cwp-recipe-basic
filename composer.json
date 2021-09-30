@@ -46,5 +46,6 @@
         "bringyourownideas/silverstripe-composer-security-checker": "1.0.x-dev"
     },
     "extra": [],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "abandoned": true
 }
