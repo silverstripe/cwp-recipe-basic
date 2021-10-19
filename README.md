@@ -1,3 +1,7 @@
+# DEPRECATED
+
+This package is no longer in-use. There is no recommended alternative.
+
 # CWP Basic Recipe metapackage
 
 The purpose of this module is to provide an easy way to obtain just the right mix of modules for a given CWP recipe
